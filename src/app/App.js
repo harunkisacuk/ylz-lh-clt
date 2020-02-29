@@ -1,4 +1,5 @@
 import MomentUtils from '@date-io/moment';
+import { Security } from '@okta/okta-react';
 import FuseAuthorization from '@fuse/core/FuseAuthorization';
 import FuseLayout from '@fuse/core/FuseLayout';
 import FuseTheme from '@fuse/core/FuseTheme';
@@ -15,6 +16,7 @@ import AppContext from './AppContext';
 import { Auth } from './auth';
 import routes from './fuse-configs/routesConfig';
 import store from './store';
+import '../styles/security.css'
 
 const jss = create({
 	...jssPreset(),
@@ -23,6 +25,12 @@ const jss = create({
 });
 
 const generateClassName = createGenerateClassName();
+const config = {
+	issuer: 'https://dev-846165.okta.com/oauth2/default',
+	redirectUri: window.location.origin + '/implicit/callback',
+	clientId: '0oa2czq27t8obXGgy4x6',
+	pkce: true
+};
 
 const App = () => {
 	return (
@@ -38,7 +46,9 @@ const App = () => {
 							<Router history={history}>
 								<FuseAuthorization>
 									<FuseTheme>
-										<FuseLayout />
+										<Security {...config} className="security">
+											<FuseLayout />
+										</Security>
 									</FuseTheme>
 								</FuseAuthorization>
 							</Router>

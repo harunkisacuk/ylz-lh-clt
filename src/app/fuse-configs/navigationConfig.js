@@ -22,6 +22,14 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'whatshot',
 				url: '/example'
+			},
+			{
+				id: 'example-component',
+				title: 'Example2',
+				translate: 'EXAMPLE',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/example2'
 			}
 		]
 	}

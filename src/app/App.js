@@ -15,6 +15,8 @@ import AppContext from './AppContext';
 import { Auth } from './auth';
 import routes from './fuse-configs/routesConfig';
 import store from './store';
+import { Security} from '@okta/okta-react';
+import "../styles/security.css";
 
 const jss = create({
 	...jssPreset(),
@@ -24,8 +26,18 @@ const jss = create({
 
 const generateClassName = createGenerateClassName();
 
+const config = {
+	issuer: process.env.REACT_APP_OKTA_ISSUER,
+	redirectUri: process.env.REACT_APP_OKTA_REDIRECT_URI,
+	clientId: process.env.REACT_APP_OKTA_CLIENT_ID,
+	pkce: Boolean(process.env.REACT_APP_OKTA_PKCE)
+}
+
+console.log(config);
+
 const App = () => {
 	return (
+
 		<AppContext.Provider
 			value={{
 				routes
@@ -36,11 +48,15 @@ const App = () => {
 					<MuiPickersUtilsProvider utils={MomentUtils}>
 						<Auth>
 							<Router history={history}>
-								<FuseAuthorization>
-									<FuseTheme>
-										<FuseLayout />
-									</FuseTheme>
-								</FuseAuthorization>
+								<Security  {...config} className="security">
+									{/* <div style={{width:"1200px"}}> */}
+										<FuseAuthorization>
+											<FuseTheme>
+												<FuseLayout />
+											</FuseTheme>
+										</FuseAuthorization>
+									{/* </div> */}
+								</Security>
 							</Router>
 						</Auth>
 					</MuiPickersUtilsProvider>

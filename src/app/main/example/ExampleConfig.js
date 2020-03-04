@@ -1,9 +1,11 @@
 import i18next from 'i18next';
 import Example from './Example';
+import Example2 from './Example2';
 import en from './i18n/en';
 import tr from './i18n/tr';
 import ar from './i18n/ar';
-
+import { SecureRoute } from '@okta/okta-react';
+import React from 'react';
 i18next.addResourceBundle('en', 'examplePage', en);
 i18next.addResourceBundle('tr', 'examplePage', tr);
 i18next.addResourceBundle('ar', 'examplePage', ar);
@@ -15,10 +17,18 @@ const ExampleConfig = {
 		}
 	},
 	routes: [
+      
 		{
-			path: '/example',
-			component: Example
+            path: '/example', 
+         //   component: () => <SecureRoute component={Example} />
+         component: Example
+        },
+        {
+			path: '/example2',
+			component: Example2
 		}
+
+       
 	]
 };
 

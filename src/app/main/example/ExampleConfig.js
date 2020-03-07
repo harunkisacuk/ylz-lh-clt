@@ -17,7 +17,6 @@ const ExampleConfig = {
 		}
 	},
 	routes: [
-      
 		{
             path: '/example', 
          //   component: () => <SecureRoute component={Example} />

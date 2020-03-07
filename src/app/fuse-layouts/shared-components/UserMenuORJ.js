@@ -10,8 +10,6 @@ import * as authActions from 'app/auth/store/actions';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import LoginLogoutButton from './LoginLogoutButton';
-
 
 function UserMenu(props) {
     const dispatch = useDispatch();
@@ -68,7 +66,12 @@ function UserMenu(props) {
             >
                 {!user.role || user.role.length === 0 ? (
                     <>
-                        <LoginLogoutButton/>
+                        <MenuItem component={Link} to="/login" role="button">
+                            <ListItemIcon className="min-w-40">
+                                <Icon>lock</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary="Login" />
+                        </MenuItem>
                         <MenuItem component={Link} to="/register" role="button">
                             <ListItemIcon className="min-w-40">
                                 <Icon>person_add</Icon>

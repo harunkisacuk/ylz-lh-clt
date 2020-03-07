@@ -16,21 +16,67 @@ const navigationConfig = [
 		icon: 'apps',
 		children: [
 			{
-				id: 'example-component',
-				title: 'Example',
-				translate: 'EXAMPLE',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/example'
+				id: 'managers',
+				title: 'Managers',
+				translate: 'MANAGERS',
+				type: 'collapse',
+				icon: 'dashboard',
+				children: [
+					{
+						id: 'manager-customer',
+						title: 'Customer',
+						type: 'item',
+						url: '/manager/customers'
+					},
+					{
+						id: 'manager-receipts',
+						title: 'Receipts',
+						type: 'item',
+						url: '/manager/receipts'
+					},
+					{
+						id: 'manager-receipt-reports',
+						title: 'Receipt Reports',
+						type: 'item',
+						url: '/manager/receiptreports'
+					}
+
+				]
 			},
 			{
-				id: 'example-component',
-				title: 'Example2',
-				translate: 'EXAMPLE',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/example2'
-			}
+				id: 'admins',
+				title: 'Admins',
+				translate: 'ADMINS',
+				type: 'collapse',
+				icon: 'school',
+				children: [
+					{
+						id: 'admin-reference-data-pages',
+						title: 'Reference Data Pages',
+						type: 'item',
+						url: '/apps/manager/referencedatapages'
+					},
+					{
+						id: 'admin-users-pages',
+						title: 'Users Pages',
+						type: 'item',
+						url: '/apps/manager/userspages'
+					},
+					{
+						id: 'admin-logs-pages',
+						title: 'Logs Pages',
+						type: 'item',
+						url: '/apps/manager/logspages'
+					},
+					{
+						id: 'admin-audits-pages',
+						title: 'Auditss Pages',
+						type: 'item',
+						url: '/apps/manager/auditspages'
+					}
+
+				]
+			},
 		]
 	}
 ];

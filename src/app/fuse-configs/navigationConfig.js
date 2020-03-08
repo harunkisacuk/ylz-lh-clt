@@ -70,9 +70,9 @@ const navigationConfig = [
 					},
 					{
 						id: 'admin-audits-pages',
-						title: 'Auditss Pages',
+						title: 'Audits Pages',
 						type: 'item',
-						url: '/apps/manager/auditspages'
+						url: '/admin/auditspages'
 					}
 
 				]

@@ -4,9 +4,6 @@ import FuseUtils from '@fuse/utils';
 import ExampleConfig from 'app/main/example/ExampleConfig';
 import appsConfigs from 'app/main/apps/appsConfigs';
 
-import {  SecureRoute } from '@okta/okta-react';
-
-
 const routeConfigs = [
 	...appsConfigs,
 	ExampleConfig

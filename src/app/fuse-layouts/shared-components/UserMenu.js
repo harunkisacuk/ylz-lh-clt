@@ -69,6 +69,7 @@ function UserMenu(props) {
                 {!user.role || user.role.length === 0 ? (
                     <>
                         <LoginLogoutButton/>
+                        
                         <MenuItem component={Link} to="/register" role="button">
                             <ListItemIcon className="min-w-40">
                                 <Icon>person_add</Icon>

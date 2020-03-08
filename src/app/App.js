@@ -49,13 +49,11 @@ const App = () => {
 						<Auth>
 							<Router history={history}>
 								<Security  {...config} className="security">
-									{/* <div style={{width:"1200px"}}> */}
 										<FuseAuthorization>
 											<FuseTheme>
 												<FuseLayout />
 											</FuseTheme>
 										</FuseAuthorization>
-									{/* </div> */}
 								</Security>
 							</Router>
 						</Auth>

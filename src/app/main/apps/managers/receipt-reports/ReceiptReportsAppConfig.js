@@ -8,7 +8,7 @@ const ReceiptReportsAppConfig = {
 	},
 	routes: [
 		{
-			path: '/apps/receiptreports',
+			path: '/manager/receiptreports',
 			component: React.lazy(() => import('./ReceiptReportsApp'))
 		}
 	]

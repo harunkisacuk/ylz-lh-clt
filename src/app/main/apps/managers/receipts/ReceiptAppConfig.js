@@ -1,4 +1,6 @@
 import React from 'react';
+import { SecureRoute } from '@okta/okta-react';
+import ReceiptApp from './ReceiptApp';
 
 const ReceiptAppConfig = {
 	settings: {
@@ -9,8 +11,9 @@ const ReceiptAppConfig = {
 	routes: [
 		{
 			path: '/manager/receipts',
-			//component: React.lazy(() => import('./ReceiptApp'))
-			component: () => import('./ReceiptApp')
+			// component: () => <SecureRoute component={Example} />
+			// component: React.lazy(() => import('./ReceiptApp'))
+			component: () => <SecureRoute component={ReceiptApp} />
 		}
 	]
 };

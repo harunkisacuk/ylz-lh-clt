@@ -54,19 +54,19 @@ const navigationConfig = [
 						id: 'admin-reference-data-pages',
 						title: 'Reference Data Pages',
 						type: 'item',
-						url: '/apps/manager/referencedatapages'
+						url: '/admin/referencedatapages'
 					},
 					{
 						id: 'admin-users-pages',
 						title: 'Users Pages',
 						type: 'item',
-						url: '/apps/manager/userspages'
+						url: '/admin/userspages'
 					},
 					{
 						id: 'admin-logs-pages',
 						title: 'Logs Pages',
 						type: 'item',
-						url: '/apps/manager/logspages'
+						url: '/admin/logspages'
 					},
 					{
 						id: 'admin-audits-pages',

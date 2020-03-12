@@ -16,6 +16,7 @@ export default class AuditsPages extends React.Component {
 	};
 
 	render() {
+		console.log('tg..class:AuditsPages..',this.state.currentUserName)
 		const { currentUserName, currentUserEmail, fatherName, userRoles, mobilePhone } = this.state;
 		console.log(this.state);
 

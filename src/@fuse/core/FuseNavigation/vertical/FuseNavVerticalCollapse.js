@@ -86,14 +86,7 @@ function FuseNavVerticalCollapse(props) {
 	}
 
 	const myIdToken = JSON.parse(localStorage.getItem('okta-token-storage'));
-	if (myIdToken.idToken) {
-		console.log('tg..01..myIdToken.idToken', myIdToken.idToken)
-	} else {
-		console.log('tg..02..myIdToken.idToken undefined');
-	}
-
 	const userRoles = myIdToken.idToken ? myIdToken.idToken.claims.userRoles : [];
-	console.log('tg..02..userRoles:', userRoles, ' myIdToken:', myIdToken, ' item.id:', item.id);
 
 	return (
 		<div>

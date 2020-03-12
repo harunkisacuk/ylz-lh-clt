@@ -49,7 +49,7 @@ export default withAuth(class LoginLogoutButton extends Component {
                     <ListItemIcon className="min-w-40">
                         <Icon>lock</Icon>
                     </ListItemIcon>
-                    <ListItemText primary="LOGOUT-1" />
+                    <ListItemText primary="LOGX" />
                 </MenuItem>
             </div>
         );
@@ -60,7 +60,7 @@ export default withAuth(class LoginLogoutButton extends Component {
                     <ListItemIcon className="min-w-40">
                         <Icon>lock</Icon>
                     </ListItemIcon>
-                    <ListItemText primary="LOGOUT-2" />
+                    <ListItemText primary="LOGOUT" />
                 </MenuItem>
             </div> :
             <div>
@@ -68,7 +68,7 @@ export default withAuth(class LoginLogoutButton extends Component {
                     <ListItemIcon className="min-w-40">
                         <Icon>lock</Icon>
                     </ListItemIcon>
-                    <ListItemText primary="LOGIN-3" />
+                    <ListItemText primary="LOGIN" />
                 </MenuItem>
             </div>;
     }

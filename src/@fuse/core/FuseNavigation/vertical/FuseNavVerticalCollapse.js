@@ -85,8 +85,38 @@ function FuseNavVerticalCollapse(props) {
 		return null;
 	}
 
+	const myIdToken = JSON.parse(localStorage.getItem('okta-token-storage'));
+	if (myIdToken.idToken) {
+		console.log('tg..01..myIdToken.idToken', myIdToken.idToken)
+	} else {
+		console.log('tg..02..myIdToken.idToken undefined');
+	}
+
+	const userRoles = myIdToken.idToken ? myIdToken.idToken.claims.userRoles : [];
+	console.log('tg..02..userRoles:', userRoles, ' myIdToken:', myIdToken, ' item.id:', item.id);
+
 	return (
-		<ul className={clsx(classes.root, open && 'open')}>
+		<div>
+			{userRoles.map(role => role === item.id && MenuItem(item, classes, open, handleClick, t, nestedLevel))}
+		</div>
+	);
+}
+
+FuseNavVerticalCollapse.propTypes = {
+	item: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		title: PropTypes.string,
+		icon: PropTypes.string,
+		children: PropTypes.array
+	})
+};
+FuseNavVerticalCollapse.defaultProps = {};
+
+const NavVerticalCollapse = withRouter(React.memo(FuseNavVerticalCollapse));
+
+const MenuItem = (item, classes, open, handleClick, t, nestedLevel) => {
+	return (
+		<ul className={clsx(classes.root, open && 'open')} key={item.id}>
 			<ListItem
 				button
 				className={clsx(classes.item, 'list-item')}
@@ -135,17 +165,4 @@ function FuseNavVerticalCollapse(props) {
 		</ul>
 	);
 }
-
-FuseNavVerticalCollapse.propTypes = {
-	item: PropTypes.shape({
-		id: PropTypes.string.isRequired,
-		title: PropTypes.string,
-		icon: PropTypes.string,
-		children: PropTypes.array
-	})
-};
-FuseNavVerticalCollapse.defaultProps = {};
-
-const NavVerticalCollapse = withRouter(React.memo(FuseNavVerticalCollapse));
-
 export default NavVerticalCollapse;

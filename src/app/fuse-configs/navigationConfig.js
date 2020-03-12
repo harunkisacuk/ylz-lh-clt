@@ -16,15 +16,15 @@ const navigationConfig = [
 		icon: 'apps',
 		children: [
 			{
-				id: 'managers',
-				title: 'Managers',
-				translate: 'MANAGERS',
+				id: 'Manager',
+				title: 'Manager',
+				translate: 'MANAGER',
 				type: 'collapse',
 				icon: 'dashboard',
 				children: [
 					{
-						id: 'manager-customer',
-						title: 'Customer',
+						id: 'manager-customers',
+						title: 'Customers',
 						type: 'item',
 						url: '/manager/customers'
 					},
@@ -44,24 +44,25 @@ const navigationConfig = [
 				]
 			},
 			{
-				id: 'admins',
-				title: 'Admins',
-				translate: 'ADMINS',
+				id: 'Admin',
+				title: 'Admin',
+				translate: 'ADMIN',
 				type: 'collapse',
 				icon: 'school',
 				children: [
-					{
-						id: 'admin-reference-data-pages',
-						title: 'Reference Data Pages',
-						type: 'item',
-						url: '/admin/referencedatapages'
-					},
 					{
 						id: 'admin-users-pages',
 						title: 'Users Pages',
 						type: 'item',
 						url: '/admin/userspages'
 					},
+					{
+						id: 'admin-reference-data-pages',
+						title: 'Reference Data Pages',
+						type: 'item',
+						url: '/admin/referencedatapages'
+					},
+					
 					{
 						id: 'admin-logs-pages',
 						title: 'Logs Pages',

@@ -111,9 +111,10 @@ function FuseNavigation(props) {
 				className
 			)}
 		>
-			{navigation.map(_item => (
-				<FuseNavItem key={_item.id} type={`vertical-${_item.type}`} item={_item} nestedLevel={0} />
-			))}
+			{navigation.map(_item => {
+				console.log(_item);
+				return <FuseNavItem key={_item.id} type={`vertical-${_item.type}`} item={_item} nestedLevel={0} />
+			})}
 		</List>
 	);
 

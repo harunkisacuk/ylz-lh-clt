@@ -1,56 +1,74 @@
-import React, { Component } from 'react';
-import { withAuth } from '@okta/okta-react';
+/** @format */
+
+import React, { useState, useEffect } from "react";
+import { withAuth } from "@okta/okta-react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap"
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
-export default withAuth(class Buttons extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { authenticated: null };
-    this.checkAuthentication();
-  }
+const Button = withAuth(({ auth }) => {
+  const [authenticated, setAuthenticated] = useState(null);
+  const [groups, setGroups] = useState("Manager");
+  const [name, setName] = useState("");
 
-  checkAuthentication = async () => {
-    const authenticated = await this.props.auth.isAuthenticated();
-    if (authenticated !== this.state.authenticated) {
-      this.setState({ authenticated });
-    }
+  useEffect(() => {
+    auth.isAuthenticated().then((isAuthenticated) => {
+      if (isAuthenticated !== authenticated) {
+        setAuthenticated(isAuthenticated);
 
-  }
-
-  componentDidUpdate() {
-    this.checkAuthentication();
-  }
-
-login = async () =>{
-    // Redirect to '/' after login
-    this.props.auth.login('/');
-  }
-
-  logout = async () => {
-    // Redirect to '/' after logout
-    this.props.auth.logout('/');
-  }
-  render() {
-      console.log(this.props.auth)
-    return <Navbar.Collapse id="responsive-navbar-nav">
-                {this.state.authenticated && (
-                <Nav className="mr-auto">
-                    <Nav.Link as={Link} to="/">
-                        Home
-                    </Nav.Link>
-                    <Nav.Link as={Link} to="/admin">
-                        Admin
-                    </Nav.Link>
-                    <Nav.Link as={Link} to="/staff">
-                        Staff
-                    </Nav.Link>
-                    <Nav.Link onClick={this.logout}>
-                        Logout
-                    </Nav.Link>
-                </Nav>)}
-                {!this.state.authenticated &&<Nav><Nav.Link onClick={this.login}>Login</Nav.Link></Nav> }
-          </Navbar.Collapse>
-
-  }
+        let myIdToken = JSON.parse(localStorage.getItem("okta-token-storage"));
+        if (myIdToken.idToken) {
+          setGroups(myIdToken.idToken.claims.groups[1]);
+          setName(myIdToken.idToken.claims.name);
+        }
+      }
+    });
+  });
+  return (
+    <Navbar.Collapse id="responsive-navbar-nav">
+      {authenticated && (
+        <>
+          <Nav className="mr-auto">
+            {groups === "Admin" ? (
+              <>
+                <Nav.Link as={Link} to="/users">
+                  Users
+                </Nav.Link>
+                <Nav.Link as={Link} to="/refdata">
+                  Ref Data
+                </Nav.Link>
+                <Nav.Link as={Link} to="/logs">
+                  Logs
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/customers">
+                  Customers
+                </Nav.Link>
+                <Nav.Link as={Link} to="/receipts">
+                  Receipts
+                </Nav.Link>
+                <Nav.Link as={Link} to="/reports">
+                  Reports
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+          <Nav>
+            <NavDropdown title={"Signed in: " + name} id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={() => auth.logout()}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </>
+      )}
+      {!authenticated && (
+        <Nav>
+          <Nav.Link onClick={() => auth.login()}>Login</Nav.Link>
+        </Nav>
+      )}
+    </Navbar.Collapse>
+  );
 });
+export default Button;

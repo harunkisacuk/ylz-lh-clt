@@ -9,3 +9,15 @@ const Home = () => {
 }
 
 export default Home
+
+{/* <div>
+{authenticated ? (
+  <>
+    <Home />
+  </>
+) : authenticated === null ? (
+  <Spinner animation="grow" />
+) : (
+  <Login />
+)}
+</div> */}

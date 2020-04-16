@@ -28,9 +28,7 @@ class Staff extends Component {
                 <br></br>
                 <h3>mobilePhone: {mobilePhone}</h3>
                 <br></br>
-                <h3>group-1     : {groups[0]}</h3>
-                <br></br>
-                <h3>group-2    : {groups[1]}</h3>
+                {groups && groups.map(group => (<h3>{group}</h3>) )}
                 <br></br>
 
             </div>

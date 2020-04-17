@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import Navbar from "./components/layout/Navbar";
+import Navbar from "./molecules/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Security, ImplicitCallback } from "@okta/okta-react";
 import config from "./config/config";
@@ -15,7 +15,7 @@ const App = () => (
       <Navbar />
       <Container style={{ margin: "7em" }}>
         <Route path="/implicit/callback" component={ImplicitCallback} />
-        {routes}
+            {routes}
       </Container>
     </Security>
   </Router>

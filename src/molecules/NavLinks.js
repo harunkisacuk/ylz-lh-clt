@@ -7,7 +7,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const Button = withAuth(({ auth }) => {
   const [authenticated, setAuthenticated] = useState(null);
-  const [groups, setGroups] = useState("Manager");
+  const [groups, setGroups] = useState([]);
   const [name, setName] = useState("");
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Button = withAuth(({ auth }) => {
 
         let myIdToken = JSON.parse(localStorage.getItem("okta-token-storage"));
         if (myIdToken.idToken) {
-          setGroups(myIdToken.idToken.claims.groups[1]);
+          setGroups(myIdToken.idToken.claims.groups);
           setName(myIdToken.idToken.claims.name);
         }
       }
@@ -28,27 +28,27 @@ const Button = withAuth(({ auth }) => {
       {authenticated && (
         <>
           <Nav className="mr-auto">
-            {groups === "Admin" ? (
+            {groups.includes("Admin") && (
               <>
-                <Nav.Link as={Link} to="/users">
+                <Nav.Link as={Link} to="/admin/users">
                   Users
                 </Nav.Link>
-                <Nav.Link as={Link} to="/refdata">
+                <Nav.Link as={Link} to="/admin/refdata">
                   Ref Data
                 </Nav.Link>
-                <Nav.Link as={Link} to="/logs">
+                <Nav.Link as={Link} to="/admin/logs">
                   Logs
                 </Nav.Link>
               </>
-            ) : (
+            )}{groups.includes('Manager') && (
               <>
-                <Nav.Link as={Link} to="/customers">
+                <Nav.Link as={Link} to="/manager/customers">
                   Customers
                 </Nav.Link>
-                <Nav.Link as={Link} to="/receipts">
+                <Nav.Link as={Link} to="/manager/receipts">
                   Receipts
                 </Nav.Link>
-                <Nav.Link as={Link} to="/reports">
+                <Nav.Link as={Link} to="/manager/reports">
                   Reports
                 </Nav.Link>
               </>

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import Buttons from "../Buttons";
+import NavLinks from "./NavLinks";
 import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Header = () => {
         Invoice App
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Buttons />
+      <NavLinks />
     </Navbar>
   );
 };

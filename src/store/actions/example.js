@@ -1,3 +1,3 @@
 export const example = () => ({
-    type: 'EXAMPLE'
-  });
+  type: 'EXAMPLE'
+});

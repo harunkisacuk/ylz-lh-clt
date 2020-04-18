@@ -1,9 +1,9 @@
 /** @format */
 
-import React from "react";
-import NavLinks from "./NavLinks";
-import { Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import NavLinks from './NavLinks';
+import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (

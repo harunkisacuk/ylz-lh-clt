@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { Switch } from "react-router-dom";
 import { SecureRoute, withAuth } from "@okta/okta-react";
-import AdminHome from "./pages/admin/AdminHome";
-import ManagerHome from "./pages/manager/ManagerHome";
+import AdminHome from "./pages/admin/Home";
+import ManagerHome from "./pages/manager/Home";
 import Customers from "./pages/manager/Customers.js";
 import Receipts from "./pages/manager/Receipts.js";
 import Reports from "./pages/manager/Reports";
@@ -18,7 +18,7 @@ const routes = withAuth(({ auth }) => {
   const [authenticated, setAuthenticated] = useState(null);
 
   useEffect(() => {
-    auth.isAuthenticated().then((isAuthenticated) => {
+    auth.isAuthenticated().then(isAuthenticated => {
       if (isAuthenticated !== authenticated) {
         setAuthenticated(isAuthenticated);
 
@@ -30,9 +30,9 @@ const routes = withAuth(({ auth }) => {
     });
   });
 
-  if (groups.includes("Manager") && groups.includes("Admin") ) {
+  if (groups.includes("Manager") && groups.includes("Admin")) {
     return (
-        <Switch>
+      <Switch>
         <SecureRoute path="/" exact={true} component={ManagerHome} />
         <SecureRoute path="/manager/customers" component={Customers} />
         <SecureRoute path="/manager/receipts" component={Receipts} />
@@ -41,28 +41,28 @@ const routes = withAuth(({ auth }) => {
         <SecureRoute path="/admin/refdata" component={RefData} />
         <SecureRoute path="/admin/logs" component={Logs} />
         <SecureRoute component={NotFoundPage} />
-        </Switch>
+      </Switch>
     );
-  } else if (groups.includes("Manager"))  {
+  } else if (groups.includes("Manager")) {
     return (
-       <Switch>
+      <Switch>
         <SecureRoute path="/" exact={true} component={ManagerHome} />
         <SecureRoute path="/manager/customers" component={Customers} />
         <SecureRoute path="/manager/receipts" component={Receipts} />
         <SecureRoute path="/manager/reports" component={Reports} />
         <SecureRoute component={NotFoundPage} />
-        </Switch>
-    )
+      </Switch>
+    );
   } else {
-      return (
-        <Switch>
+    return (
+      <Switch>
         <SecureRoute path="/" component={AdminHome} />
         <SecureRoute path="/admin/users" component={Users} />
         <SecureRoute path="/admin/refdata" component={RefData} />
         <SecureRoute path="/admin/logs" component={Logs} />
         <SecureRoute component={NotFoundPage} />
-        </Switch>
-      )
+      </Switch>
+    );
   }
 });
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ManagerHome = () => {
+const Home = () => {
   return (
     <div>
       <h2>Welcome to Manager home page</h2>
@@ -8,4 +8,4 @@ const ManagerHome = () => {
   );
 };
 
-export default ManagerHome;
+export default Home;

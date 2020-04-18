@@ -7,7 +7,6 @@ export const Tables = ({ arr = [], className }) => {
         <Table className={className}>
             <thead>
                 <tr>
-                    {' '}
                     {Object.keys(arr[0]).map((item, k) => (
                         <th scope='col' key={k}>
                             {decamelize(item, ' ')}

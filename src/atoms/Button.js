@@ -1,6 +1,6 @@
 import React from "react";
 import { Button as ButtonB } from "react-bootstrap";
-import { Icon } from "./Icon";
+import Icon from "./Icon";
 
 export default function Button({
   id,

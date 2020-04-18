@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const RefData = () => {
-    return (
-        <div>
-            Ref Data Page
-        </div>
-    )
-}
+  return <div>Ref Data Page</div>;
+};
 
-export default RefData
+export default RefData;

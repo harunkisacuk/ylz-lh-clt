@@ -1,21 +1,21 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import { withAuth } from "@okta/okta-react";
-import { Link } from "react-router-dom";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { withAuth } from '@okta/okta-react';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const Button = withAuth(({ auth }) => {
   const [authenticated, setAuthenticated] = useState(null);
   const [groups, setGroups] = useState([]);
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   useEffect(() => {
     auth.isAuthenticated().then((isAuthenticated) => {
       if (isAuthenticated !== authenticated) {
         setAuthenticated(isAuthenticated);
 
-        let myIdToken = JSON.parse(localStorage.getItem("okta-token-storage"));
+        let myIdToken = JSON.parse(localStorage.getItem('okta-token-storage'));
         if (myIdToken.idToken) {
           setGroups(myIdToken.idToken.claims.groups);
           setName(myIdToken.idToken.claims.name);
@@ -28,7 +28,7 @@ const Button = withAuth(({ auth }) => {
       {authenticated && (
         <>
           <Nav className="mr-auto">
-            {groups.includes("Admin") && (
+            {groups.includes('Admin') && (
               <>
                 <Nav.Link as={Link} to="/admin/users">
                   Users
@@ -40,7 +40,8 @@ const Button = withAuth(({ auth }) => {
                   Logs
                 </Nav.Link>
               </>
-            )}{groups.includes('Manager') && (
+            )}
+            {groups.includes('Manager') && (
               <>
                 <Nav.Link as={Link} to="/manager/customers">
                   Customers
@@ -55,10 +56,8 @@ const Button = withAuth(({ auth }) => {
             )}
           </Nav>
           <Nav>
-            <NavDropdown title={"Signed in: " + name} id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={() => auth.logout()}>
-                Logout
-              </NavDropdown.Item>
+            <NavDropdown title={'Signed in: ' + name} id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={() => auth.logout()}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>

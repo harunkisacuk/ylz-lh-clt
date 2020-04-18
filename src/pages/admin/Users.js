@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Users = () => {
-    return (
-        <div>
-            Users Page
-        </div>
-    )
-}
+  return <div>Users Page</div>;
+};
 
-export default Users
+export default Users;

@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import App from "./App";
-import configureStore from "./store/config/configureStore";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import configureStore from './store/config/configureStore';
 
 const store = configureStore();
 
@@ -12,4 +12,4 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById("root"));
+ReactDOM.render(jsx, document.getElementById('root'));

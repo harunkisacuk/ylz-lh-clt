@@ -1,0 +1,9 @@
+.table-striped {
+  line-height: 15px;
+}
+
+.table-striped thead tr th {
+  vertical-align: middle;
+  text-align: center;
+  width: 200px;
+}

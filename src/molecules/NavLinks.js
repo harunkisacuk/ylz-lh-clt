@@ -16,7 +16,7 @@ const Button = withAuth(({ auth }) => {
         setAuthenticated(isAuthenticated);
 
         let myIdToken = JSON.parse(localStorage.getItem('okta-token-storage'));
-        if (myIdToken.idToken) {
+        if (myIdToken?.idToken) {
           setGroups(myIdToken.idToken.claims.groups);
           setName(myIdToken.idToken.claims.name);
         }

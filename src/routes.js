@@ -23,7 +23,7 @@ const routes = withAuth(({ auth }) => {
         setAuthenticated(isAuthenticated);
 
         let myIdToken = JSON.parse(localStorage.getItem('okta-token-storage'));
-        if (myIdToken.idToken) {
+        if (myIdToken?.idToken) {
           setGroups(myIdToken.idToken.claims.groups);
         }
       }
@@ -53,16 +53,18 @@ const routes = withAuth(({ auth }) => {
         <SecureRoute component={NotFoundPage} />
       </Switch>
     );
-  } else {
+  } else if (groups.includes('Admin')) {
     return (
       <Switch>
-        <SecureRoute path="/" component={AdminHome} />
+        <SecureRoute path="/" exact component={AdminHome} />
         <SecureRoute path="/admin/users" component={Users} />
         <SecureRoute path="/admin/refdata" component={RefData} />
         <SecureRoute path="/admin/logs" component={Logs} />
         <SecureRoute component={NotFoundPage} />
       </Switch>
     );
+  } else {
+    return <SecureRoute component={NotFoundPage} />;
   }
 });
 

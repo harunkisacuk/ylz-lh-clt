@@ -16,10 +16,6 @@ const Table = ({
   table = 'table',
   size
 }) => {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [clientAddress, setClientAddress] = React.useState([]);
-  const [clientName, setclientName] = React.useState();
-
   return (
     <>
       <TableB

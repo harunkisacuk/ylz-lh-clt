@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-export const Dropdown = ({
+const Dropdown = ({
   className,
   onChange = undefined,
-  disabled = true,
+  disabled = false,
   options = [],
   fieldName
 }) => {
@@ -24,3 +24,5 @@ export const Dropdown = ({
     </Form.Group>
   );
 };
+
+export default Dropdown;

@@ -5,6 +5,51 @@ import axios from 'axios';
 
 const List = () => {
   const [customers, setCustomers] = useState([]);
+  const title = [
+    {
+      title: 'ID',
+      fieldName: 'id'
+    },
+    {
+      title: 'First Name',
+      fieldName: 'firstName'
+    },
+    {
+      title: 'Last Name',
+      fieldName: 'lastName'
+    },
+    {
+      title: 'Email',
+      fieldName: 'email'
+    },
+    {
+      title: 'Created By',
+      fieldName: 'createdBy'
+    }
+  ];
+
+  // setTitle([
+  //   {
+  //     title: 'ID',
+  //     fieldName: 'id'
+  //   },
+  //   {
+  //     title: 'First Name',
+  //     fieldName: 'firstName'
+  //   },
+  //   {
+  //     title: 'Last Name',
+  //     fieldName: 'lastName'
+  //   },
+  //   {
+  //     title: 'Phone',
+  //     fieldName: 'phone'
+  //   },
+  //   {
+  //     title: 'Address',
+  //     fieldName: 'address'
+  //   }
+  // ]);
 
   useEffect(() => {
     (async () => {
@@ -22,11 +67,8 @@ const List = () => {
 
   return (
     <div>
-      {customers.length > 0 ? (
-        <Table data={customers} table={true} striped={true} />
-      ) : (
-        <div>deneme</div>
-      )}
+      {console.log(customers)}
+      {<Table titleData={title} table={true} striped={true} />}
     </div>
   );
 };

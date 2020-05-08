@@ -19,37 +19,18 @@ const List = () => {
       fieldName: 'lastName'
     },
     {
-      title: 'Email',
-      fieldName: 'email'
+      title: 'Created At',
+      fieldName: 'createdAt'
     },
     {
       title: 'Created By',
       fieldName: 'createdBy'
+    },
+    {
+      title: '#',
+      icons: ['delete', 'edit']
     }
   ];
-
-  // setTitle([
-  //   {
-  //     title: 'ID',
-  //     fieldName: 'id'
-  //   },
-  //   {
-  //     title: 'First Name',
-  //     fieldName: 'firstName'
-  //   },
-  //   {
-  //     title: 'Last Name',
-  //     fieldName: 'lastName'
-  //   },
-  //   {
-  //     title: 'Phone',
-  //     fieldName: 'phone'
-  //   },
-  //   {
-  //     title: 'Address',
-  //     fieldName: 'address'
-  //   }
-  // ]);
 
   useEffect(() => {
     (async () => {
@@ -66,10 +47,7 @@ const List = () => {
   }, []);
 
   return (
-    <div>
-      {console.log(customers)}
-      {<Table titleData={title} table={true} striped={true} />}
-    </div>
+    <div>{<Table data={customers} titleData={title} table={true} striped={true} />}</div>
   );
 };
 

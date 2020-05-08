@@ -33,16 +33,22 @@ const Table = ({
               {item.title}
             </th>
           ))}
-          <th>#</th>
-          <th>#</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          {data.filter(
-            (item) => item === titleData.map((title) => title.fieldName)(<td>{item}</td>)
-          )}
-        </tr>
+        {data.map((item, i) => (
+          <tr className="table-tr" key={'row' + i}>
+            {titleData.map((title, k) =>
+              item[title.fieldName] ? (
+                <td key={'column' + k}>{item[title.fieldName]}</td>
+              ) : (
+                <td>
+                  <Icon icon="trash" />
+                </td>
+              )
+            )}
+          </tr>
+        ))}
       </tbody>
     </TableB>
   );

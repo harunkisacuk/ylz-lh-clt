@@ -1,10 +1,10 @@
 import React from 'react';
-import { decamelize } from '../helper/functions';
 import { Table as TableB } from 'react-bootstrap';
-import RenderBoolean from './RenderBoolean';
+import Icon from './Icon';
 import './Table.css';
 
 const Table = ({
+  titleData = [],
   data = [],
   striped = false,
   bordered = false,
@@ -20,32 +20,29 @@ const Table = ({
       hover={hover}
       size={size}
       responsive={responsive}
-      table={table}
     >
       <thead>
         <tr>
-          {Object.keys(data[0]).map((item, k) => (
+          {titleData.map((item, k) => (
             <th className="table-head" scope="col" key={k}>
-              {decamelize(item, ' ')}
+              {item.title}
             </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {data.map((c, index) => (
-          <tr key={index}>
-            <th>{index + 1}</th>
-            {Object.values(c).map(
-              (value, i) =>
-                i !== 0 && (
-                  <td key={i}>
-                    {typeof value === 'boolean' ? (
-                      <RenderBoolean value={value} />
-                    ) : (
-                      value || ' '
-                    )}
-                  </td>
-                )
+        {data.map((item, i) => (
+          <tr className="table-tr" key={'row' + i} name={item.id}>
+            {titleData.map((title, k) =>
+              item[title.fieldName] ? (
+                <td key={'column' + k}>{item[title.fieldName]}</td>
+              ) : (
+                <td key={`icon${k}`}>
+                  {title.icons?.map((icon, index) => (
+                    <Icon key={`icons${index}`} icon={'fa' + icon} />
+                  ))}
+                </td>
+              )
             )}
           </tr>
         ))}

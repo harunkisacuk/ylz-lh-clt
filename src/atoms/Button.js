@@ -11,10 +11,19 @@ export default function Button({
   className,
   variant,
   color,
-  icon
+  icon,
+  size
 }) {
   return (
-    <ButtonB id={id} disabled={disabled} onClick={onClick} type={type} variant={variant}>
+    <ButtonB
+      id={id}
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
+      variant={variant}
+      size={size}
+      color={color}
+    >
       {icon && <Icon icon={icon} />}
       {text}
     </ButtonB>

@@ -13,7 +13,7 @@ const App = () => (
   <Router>
     <Security {...config}>
       <Navbar />
-      <Container style={{ marginTop: '7em' }}>
+      <Container style={{ marginTop: '7rem' }}>
         <Route path="/implicit/callback" component={ImplicitCallback} />
         {routes}
       </Container>

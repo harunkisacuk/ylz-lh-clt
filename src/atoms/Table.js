@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Table as TableB } from 'react-bootstrap';
 import Icon from './Icon';
 import './Table.css';
@@ -14,11 +13,6 @@ const Table = ({
   table = 'table',
   size
 }) => {
-  const history = useHistory();
-  const handleView = (e) => {
-    const id = e.target.parentNode.getAttribute('name');
-    history.push({ pathname: `/manager/customers/${id}` });
-  };
   return (
     <TableB
       striped={striped}
@@ -38,12 +32,7 @@ const Table = ({
       </thead>
       <tbody>
         {data.map((item, i) => (
-          <tr
-            className="table-tr"
-            key={'row' + i}
-            name={item.id}
-            onClick={(e) => handleView(e)}
-          >
+          <tr className="table-tr" key={'row' + i} name={item.id}>
             {titleData.map((title, k) =>
               item[title.fieldName] ? (
                 <td key={'column' + k}>{item[title.fieldName]}</td>

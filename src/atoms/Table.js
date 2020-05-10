@@ -1,9 +1,6 @@
 import React from 'react';
-import { decamelize } from '../helper/functions';
+import { useHistory } from 'react-router-dom';
 import { Table as TableB } from 'react-bootstrap';
-import RenderBoolean from './RenderBoolean';
-import RenderAddress from './RenderAddress';
-import Modal from './Modal';
 import Icon from './Icon';
 import './Table.css';
 
@@ -17,6 +14,11 @@ const Table = ({
   table = 'table',
   size
 }) => {
+  const history = useHistory();
+  const handleView = (e) => {
+    const id = e.target.parentNode.getAttribute('name');
+    history.push({ pathname: `/manager/customers/${id}` });
+  };
   return (
     <TableB
       striped={striped}
@@ -24,7 +26,6 @@ const Table = ({
       hover={hover}
       size={size}
       responsive={responsive}
-      table={table}
     >
       <thead>
         <tr>
@@ -37,13 +38,20 @@ const Table = ({
       </thead>
       <tbody>
         {data.map((item, i) => (
-          <tr className="table-tr" key={'row' + i}>
+          <tr
+            className="table-tr"
+            key={'row' + i}
+            name={item.id}
+            onClick={(e) => handleView(e)}
+          >
             {titleData.map((title, k) =>
               item[title.fieldName] ? (
                 <td key={'column' + k}>{item[title.fieldName]}</td>
               ) : (
-                <td>
-                  <Icon icon="trash" />
+                <td key={`icon${k}`}>
+                  {title.icons?.map((icon, index) => (
+                    <Icon key={`icons${index}`} icon={'fa' + icon} />
+                  ))}
                 </td>
               )
             )}

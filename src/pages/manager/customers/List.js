@@ -28,7 +28,7 @@ const List = () => {
     },
     {
       title: '#',
-      icons: ['delete', 'edit']
+      icons: ['Edit', 'TrashAlt']
     }
   ];
 
@@ -46,9 +46,7 @@ const List = () => {
     })();
   }, []);
 
-  return (
-    <div>{<Table data={customers} titleData={title} table={true} striped={true} />}</div>
-  );
+  return <div>{<Table data={customers} titleData={title} striped={true} />}</div>;
 };
 
 export default List;

@@ -1,7 +1,8 @@
 import React from 'react';
+import ReceiptList from './ReceiptList';
 
 const Receipts = () => {
-  return <div>Receipts</div>;
+  return <div>{<ReceiptList />}</div>;
 };
 
 export default Receipts;

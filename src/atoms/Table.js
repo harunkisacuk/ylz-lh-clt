@@ -10,8 +10,8 @@ const Table = ({
   bordered = false,
   hover = false,
   responsive = false,
-  table = 'table',
-  size
+  size,
+  iconClick
 }) => {
   return (
     <TableB
@@ -32,14 +32,19 @@ const Table = ({
       </thead>
       <tbody>
         {data.map((item, i) => (
-          <tr className="table-tr" key={'row' + i} name={item.id}>
+          <tr className="table-tr" key={'row' + i}>
             {titleData.map((title, k) =>
               item[title.fieldName] ? (
                 <td key={'column' + k}>{item[title.fieldName]}</td>
               ) : (
-                <td key={`icon${k}`}>
-                  {title.icons?.map((icon, index) => (
-                    <Icon key={`icons${index}`} icon={'fa' + icon} />
+                <td key={`icon${k + k}`} name={item.id}>
+                  {title.icons?.map((icon, i) => (
+                    <Icon
+                      name={item.id}
+                      icon={'fa' + icon}
+                      onClick={iconClick}
+                      id={icon}
+                    />
                   ))}
                 </td>
               )

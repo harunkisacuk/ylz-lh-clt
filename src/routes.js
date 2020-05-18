@@ -12,13 +12,14 @@ import Users from './pages/admin/Users';
 import RefData from './pages/admin/RefData';
 import Logs from './pages/admin/Logs';
 import NotFoundPage from './pages/NotFoundPage';
+import ReceiptView from './pages/manager/ReceiptView';
 
 const routes = withAuth(({ auth }) => {
   const [groups, setGroups] = useState([]);
   const [authenticated, setAuthenticated] = useState(null);
 
   useEffect(() => {
-    auth.isAuthenticated().then((isAuthenticated) => {
+    auth.isAuthenticated().then(isAuthenticated => {
       if (isAuthenticated !== authenticated) {
         setAuthenticated(isAuthenticated);
 
@@ -35,7 +36,8 @@ const routes = withAuth(({ auth }) => {
       <Switch>
         <SecureRoute path="/" exact={true} component={ManagerHome} />
         <SecureRoute path="/manager/customers" component={Customers} />
-        <SecureRoute path="/manager/receipts" component={Receipts} />
+        <SecureRoute exact path="/manager/receipts" component={Receipts} />
+        <SecureRoute exact path="/manager/receipts/:id" component={ReceiptView} />
         <SecureRoute path="/manager/reports" component={Reports} />
         <SecureRoute path="/admin/users" component={Users} />
         <SecureRoute path="/admin/refdata" component={RefData} />

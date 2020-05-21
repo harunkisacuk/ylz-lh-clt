@@ -11,7 +11,7 @@ const ReceiptList = () => {
       title: '# ',
       fieldName: 'id'
     },
-    { title: 'Customer', fieldName: 'firstName' },
+    { title: 'Customer', fieldName: 'customerName' },
     {
       title: 'Date',
       fieldName: 'date'
@@ -32,8 +32,7 @@ const ReceiptList = () => {
 
   useEffect(() => {
     (async () => {
-      // let urlCustomer = 'http://localhost:3009/customers';
-      let urlReceipts = 'http://localhost:3009/receipts';
+      let urlReceipts = process.env.REACT_APP_RECEIPT_API;
       const receiptsData = await axios.get(urlReceipts, {
         headers: {
           Accept: 'application/json',
@@ -41,39 +40,36 @@ const ReceiptList = () => {
           Authorization: 'Bearer ' + localStorage.getItem('idToken.idtoken')
         }
       });
-      // const cList = await axios.get(urlCustomer, {
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //     Authorization: 'Bearer ' + localStorage.getItem('idToken.idtoken')
-      //   }
-      // });
-
       setReceiptList(receiptsData.data);
-      // setCustomers(cList.data);
     })();
   }, []);
 
-  console.log('receiptList', receiptList);
-  console.log('customers', customers);
-  const receiptWithCustomer = [];
+  useEffect(() => {
+    (async () => {
+      let urlCustomer = process.env.REACT_APP_CUSTOMER_API;
+      const cList = await axios.get(urlCustomer, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('idToken.idtoken')
+        }
+      });
 
-  for (var id = 1; id < receiptList.length; id++) {
-    const receiptSelectedById = receiptList.find(receipt => {
-      return receipt.id === id;
-    });
-    console.log('eceiptSelectedById', receiptSelectedById);
-    const customerSelectedById = customers.find(customer => {
-      return customer.id === receiptSelectedById.customerId;
-    });
-    const concatReceiptAndCustomer = customerSelectedById.concat(receiptSelectedById);
-    if (customerSelectedById) {
-      receiptWithCustomer.push(concatReceiptAndCustomer);
+      setCustomers(cList.data);
+    })();
+  }, []);
+
+  const newReceiptList = receiptList.map(receipt => {
+    if (customers.length !== 0) {
+      const selectedCustomer = customers.find(
+        customer => customer.id === receipt.customerId
+      );
+      receipt.customerName = selectedCustomer.firstName;
     }
-  }
-  console.log('receiptWithCustomer', receiptWithCustomer);
+    return receipt;
+  });
 
-  return <>{<Table data={receiptList} titleData={title} striped={true} />}</>;
+  return <>{<Table data={newReceiptList} titleData={title} striped={true} />}</>;
 };
 
 export default ReceiptList;

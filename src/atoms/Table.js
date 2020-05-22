@@ -11,8 +11,8 @@ const Table = ({
   bordered = false,
   hover = false,
   responsive = false,
-  table = 'table',
-  size
+  size,
+  iconClick
 }) => {
   const history = useHistory();
   const handleClick = (e, icon) => {
@@ -48,12 +48,13 @@ const Table = ({
               item[title.fieldName] ? (
                 <td key={'column' + k}>{item[title.fieldName]}</td>
               ) : (
-                <td key={`icon${k}`} name={item.id}>
+                <td key={`icon${k + k}`} name={item.id}>
                   {title.icons?.map((icon, i) => (
                     <Icon
-                      icon={'fa' + icon}
-                      onClick={e => handleClick(e, icon)}
                       name={item.id}
+                      icon={'fa' + icon}
+                      onClick={iconClick}
+                      id={icon}
                     />
                   ))}
                 </td>

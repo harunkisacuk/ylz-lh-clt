@@ -39,7 +39,7 @@ const List = (props) => {
 
   useEffect(() => {
     (async () => {
-      let url = 'http://localhost:3009/customers';
+      let url = process.env.REACT_APP_CUSTOMER_API;
       const cList = await axios.get(url, {
         headers: {
           Accept: 'application/json',

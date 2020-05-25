@@ -19,7 +19,7 @@ const routes = withAuth(({ auth }) => {
   const [authenticated, setAuthenticated] = useState(null);
 
   useEffect(() => {
-    auth.isAuthenticated().then((isAuthenticated) => {
+    auth.isAuthenticated().then(isAuthenticated => {
       if (isAuthenticated !== authenticated) {
         setAuthenticated(isAuthenticated);
 

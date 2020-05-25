@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Table as TableB } from 'react-bootstrap';
 import Icon from './Icon';
 import './Table.css';
@@ -14,16 +13,6 @@ const Table = ({
   size,
   iconClick
 }) => {
-  const history = useHistory();
-  const handleClick = (e, icon) => {
-    console.log('Message');
-    const id = e.target.parentNode.getAttribute('name');
-    if (icon === 'Edit') {
-      history.push({ pathname: `/manager/receipts/${id}` });
-    }
-    console.log(id);
-  };
-
   return (
     <TableB
       striped={striped}

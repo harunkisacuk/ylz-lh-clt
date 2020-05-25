@@ -12,7 +12,6 @@ import Users from './pages/admin/Users';
 import RefData from './pages/admin/RefData';
 import Logs from './pages/admin/Logs';
 import NotFoundPage from './pages/NotFoundPage';
-
 import View from './pages/manager/customers/View';
 
 const routes = withAuth(({ auth }) => {

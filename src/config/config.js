@@ -1,6 +1,6 @@
 export default {
-  issuer: 'https://dev-135027.okta.com/oauth2/default',
-  redirectUri: window.location.origin + '/implicit/callback',
-  clientId: '0oa350huyBhqgBDY34x6',
+  issuer: process.env.REACT_APP_OKTA_ISSUER,
+  redirectUri: process.env.REACT_APP_OKTA_REDIRECT_URI,
+  clientId: process.env.REACT_APP_OKTA_CLIENT_ID,
   pkce: true
 };

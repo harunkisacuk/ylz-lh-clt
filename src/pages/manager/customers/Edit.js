@@ -17,7 +17,7 @@ const View = (props) => {
 
   useEffect(() => {
     (async () => {
-      let url = `http://localhost:3009/customers/${id}`;
+      let url = process.env.REACT_APP_CUSTOMER_API + '/' + id;
       const cList = await axios.get(url, {
         headers: {
           Accept: 'application/json',
@@ -105,7 +105,7 @@ const View = (props) => {
                         type="text"
                         value={address.firstLine}
                         onChange={handleOnChange}
-                        name='address.firstLine'
+                        name="address.firstLine"
                       ></Input>
                       <Input
                         label="Second Line"

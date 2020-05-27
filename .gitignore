@@ -24,3 +24,4 @@ yarn-error.log*
 
 .now
 db.json
+db1.json

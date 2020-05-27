@@ -30,9 +30,16 @@ const View = (props) => {
     })();
   }, []);
   console.log(customer);
+  console.log('#', data?.address);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
+    setData({
+      ...data,
+      address: { ...data.address, 0: { ...data.address[0], firstLine: 'huzeyfe' } }
+    });
+    console.log('###', data);
+
     setData({ ...data, [name]: value });
   };
   return (
@@ -105,7 +112,7 @@ const View = (props) => {
                         type="text"
                         value={address.firstLine}
                         onChange={handleOnChange}
-                        name="address.firstLine"
+                        name={`address[0].firstLine`}
                       ></Input>
                       <Input
                         label="Second Line"

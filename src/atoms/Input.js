@@ -10,27 +10,29 @@ export default function Input({
   onChange = undefined,
   className,
   value,
-  disabled = false
+  disabled = false,
+  as,
+  label,
+  size,
+  defaultValue,
+  controlId
 }) {
   return (
-    <div>
-      <Form.Group>
-        {/* <Form.Label>Email address</Form.Label> */}
-        <Form.Control
-          id={id}
-          name={name}
-          type={type}
-          required={required}
-          placeholder={placeholder}
-          onChange={onChange}
-          className={className}
-          value={value}
-          disabled={disabled}
-        />
-        {/* <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                </Form.Text> */}
-      </Form.Group>
-    </div>
+    <Form.Group as={as} controlId={controlId}>
+      <Form.Label>{label}</Form.Label>
+      <Form.Control
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        placeholder={placeholder}
+        onChange={onChange}
+        className={className}
+        disabled={disabled}
+        size={size}
+        value={value}
+        defaultValue={defaultValue}
+      />
+    </Form.Group>
   );
 }

@@ -34,6 +34,8 @@ const List = (props) => {
     const id = e.target.parentNode.getAttribute('name');
     if (icon === 'Eye') {
       history.push({ pathname: `/manager/customers/${id}` });
+    } else if (icon === 'Edit') {
+      history.push({ pathname: `/manager/customers/edit/${id}` });
     }
   };
 

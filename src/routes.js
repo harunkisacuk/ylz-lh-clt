@@ -13,6 +13,7 @@ import RefData from './pages/admin/RefData';
 import Logs from './pages/admin/Logs';
 import NotFoundPage from './pages/NotFoundPage';
 import View from './pages/manager/customers/View';
+import ReceiptsView from './pages/manager/ReceiptsView';
 
 const routes = withAuth(({ auth }) => {
   const [groups, setGroups] = useState([]);
@@ -37,7 +38,8 @@ const routes = withAuth(({ auth }) => {
         <SecureRoute path="/" exact={true} component={ManagerHome} />
         <SecureRoute exact path="/manager/customers" component={Customers} />
         <SecureRoute exact path="/manager/customers/:id" component={View} />
-        <SecureRoute path="/manager/receipts" component={Receipts} />
+        <SecureRoute exact path="/manager/receipts" component={Receipts} />
+        <SecureRoute exact path="/manager/receipts/:id" component={ReceiptsView} />
         <SecureRoute path="/manager/reports" component={Reports} />
         <SecureRoute path="/admin/users" component={Users} />
         <SecureRoute path="/admin/refdata" component={RefData} />

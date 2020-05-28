@@ -26,7 +26,7 @@ const ReceiptList = () => {
     },
     {
       title: '',
-      icons: ['Edit', 'TrashAlt']
+      icons: ['Eye']
     }
   ];
 

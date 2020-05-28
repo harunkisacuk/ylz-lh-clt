@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Table from '../../atoms/Table';
 import '../../atoms/Table.css';
 import axios from 'axios';
@@ -26,9 +27,14 @@ const ReceiptList = () => {
     },
     {
       title: '',
-      icons: ['Edit', 'TrashAlt']
+      icons: ['Eye']
     }
   ];
+  const history = useHistory();
+  const handleClick = (e, icon) => {
+    const id = e.target.parentNode.getAttribute('name');
+    history.push({ pathname: `/manager/receipts/${id}` });
+  };
 
   useEffect(() => {
     (async () => {
@@ -69,7 +75,18 @@ const ReceiptList = () => {
     return receipt;
   });
 
-  return <>{<Table data={newReceiptList} titleData={title} striped={true} />}</>;
+  return (
+    <>
+      {
+        <Table
+          data={newReceiptList}
+          titleData={title}
+          striped={true}
+          iconClick={e => handleClick(e)}
+        />
+      }
+    </>
+  );
 };
 
 export default ReceiptList;

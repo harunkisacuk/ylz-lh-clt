@@ -70,7 +70,7 @@ const ReceiptList = () => {
       const selectedCustomer = customers.find(
         customer => customer.id === receipt.customerId
       );
-      receipt.customerName = selectedCustomer.firstName;
+      receipt.customerName = selectedCustomer.firstName + ' ' + selectedCustomer.lastName;
     }
     return receipt;
   });
